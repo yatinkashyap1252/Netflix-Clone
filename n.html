@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix clone</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        header{
+            background-color:  rgba(0, 0, 0, 0.7);
+        }
+        body{
+            height: 100vh;
+            background-image: url(wallpaper.jpg);
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+        }
+        .nav{
+            max-width: 75vw;
+            height: 70px;
+            margin: auto;
+            padding-top: 20px;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav img{
+            width: 140px;
+            height: 110px;
+        }
+        .nav .button{
+            display: flex;
+            gap: 12px;
+        }
+        .fa-solid{
+            padding-right: 4px;
+        }
+        #lang{
+            border: 2px solid #898888;
+            padding: 2px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            color: white;
+            background-color: #0000008f;
+        }
+        #sign{
+            background-color: red;
+            padding: 4px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+        }
+        .main{
+            width: 100%;
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            gap: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10;
+        }
+        .main h1{
+            font-weight: 900;
+            font-size: 50px;
+            letter-spacing: -2px;
+        }
+        .main p{
+            padding-top: 10px;
+            font-size: 25px;
+        }
+        .quep{
+            padding-top: 15px;
+            padding-bottom: 20px;
+            font-size: 20px;
+        }
+        .email{
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        #email{
+            max-width: 50%;
+            height: 50px;
+            background-color: rgba(9, 9, 9, 0.7);
+            border: 1px solid #3a3a3a;
+            border-radius: 4px;
+            padding-left: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #d1d1d1;
+        }
+        #emailbtn{
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            max-width: 30%;
+            height: 50px;
+            border: none;
+            border-radius: 4px;
+            font-size: 25px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding-left: 5px;
+        }
+        .fa-solid{
+            font-size: 25px;
+        }
+        .sep{
+            width: 100%;
+            min-height: 5px;
+            background-color: #898888;
+            z-index: 10;
+        }
+        .main2{
+            width: 100%;
+            min-height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: black;
+            color: #d1d1d1;
+            padding: 50px;
+        }
+        .content1{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            gap: 20px;
+        }
+        .tv{
+            position: relative;
+        }
+        .tv img{
+            position: relative;
+            z-index: 100;
+        }
+        .tv video{
+            position: absolute;
+            top: 96px;
+            right: 83px;
+            transform: scale(0.974);
+        }
+        .content1 .written{
+            width: 50%;
+            flex-direction: column;
+            text-align: left;
+        }
+        .content1 .written h1{
+            font-size: 60px;
+            font-weight: 900;
+            padding-bottom: 25px;
+        }
+        .content1 .written p{
+            font-size: 20px;
+        }
+        /* iframe{
+            position: relative;
+            left: 35%;
+            bottom: 5%;
+            transform: scale(1.55);
+        } */
+        .content2{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            gap: 20px;
+        }
+        .content2 .written{
+            width: 50%;
+            flex-direction: column;
+            text-align: end;
+        }
+        .content2 .written h1{
+            font-size: 50px;
+            font-weight: 900;
+            padding-bottom: 25px;
+        }
+        .content2 .written p{
+            font-size: 20px;
+        }
+        .content3{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            gap: 20px;
+        }
+        .content3 .written{
+            width: 50%;
+            flex-direction: column;
+            text-align: left;
+        }
+        .content3 .written h1{
+            font-size: 50px;
+            font-weight: 900;
+            padding-bottom: 25px;
+        }
+        .content3 .written p{
+            font-size: 20px;
+        }
+        .every{
+            position: relative;
+        }
+        .every img{
+            position: relative;
+            z-index: 100;
+        }
+        .every video{
+            position: absolute;
+            top: 28px;
+            right: 83px;
+            transform: scale(0.85);
+        }
+        .main3{
+            width: 100%;
+            min-height: auto;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+            padding: 25px;
+            padding-bottom: 50px;
+            gap: 10px;
+            text-align: center;
+        }
+        .main3 h1{
+            font-size: 50px;
+            font-weight: 700;
+        }
+        ul{
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            gap: 10px;
+        }
+        li{
+            background-color: #898888;
+            color: #fff;
+            font-size: 30px;
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+        }
+        .main4{
+            background-color: black;
+            display: flex;
+            min-height: 80vh;
+            flex-direction: column;
+            color: #fff;
+        }
+        .footpanel1{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #d1d1d1;
+            text-align: center;
+            font-size: 25px;
+            font-weight: 500;
+            box-shadow: 0 3px 12px #959494;
+        }
+        .footpanel2{
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            padding: 50px;
+            gap: 15px;
+        }
+        .footpanel2 h3{
+            text-transform: capitalize;
+            color: #a19f9f;
+            font-size: 20px;
+        }
+        .helpinfo1{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            color: #959494;
+        }
+        .helpinfo2{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            color: #959494;
+        }
+        .helpinfo3{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            color: #959494;
+        }
+        .helpinfo4{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            color: #959494;
+        }
+        .footpanel3{
+            padding-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footpanel3 img{
+            height: 150px;
+            width: 400px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px red;
+            transition: 1s;
+        }
+        .footpanel3:hover img{
+            box-shadow: 0 10px 25px red;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <img src="logo.svg" alt="logo">
+            <div class="button">
+                <button id="lang"><i class="fa-solid fa-language"></i>english</button>
+                <button id="sign">sign in</button>
+            </div>
+        </div>
+    </header>
+    <div class="main">
+        <h1>Unlimited movies, TV shows and more</h1>
+        <p>Watch anywhere. Cancel anytime.</p>
+        <p class="quep">Ready to watch? Enter your email to create or restart your membership.</p>
+        <div class="email">
+            <input type="email" id="email" pattern=".+@example\.com" size="30" placeholder="Email address" required />
+            <button id="emailbtn">Get Started<i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </div>
+    <div class="sep"></div>
+    <div class="main2">
+        <div class="content1">
+            <div class="written">
+                <h1>Enjoy on your TV</h1>
+                <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
+            </div>
+            <!-- <iframe src="https://www.youtube.com/embed/ovKVqo-L2EM?si=fac_59h88kaqA9Pn" frameborder="0" autoplay loop muted poster="n6.jpg"></iframe> -->
+            <div class="tv">
+                <img src="n2.png" alt="tv">
+                <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v" autoplay loop muted></video>
+            </div>
+        </div>
+        <div class="sep"></div>
+        <div class="content2">
+            <img src="n3.jpg" alt="mobile">
+            <div class="written">
+                <h1>Download your shows to watch offline</h1>
+                <p>Save your favourites easily and always have something to watch.</p>
+            </div>
+        </div>
+        <div class="sep"></div>
+        <div class="content3">
+            <div class="written">
+                <h1>Watch everywhere</h1>
+                <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+            </div>
+            <div class="every">
+                <img src="n5.png" alt="everything">
+                <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices-in.m4v" loop muted autoplay></video>
+            </div>
+        </div>
+        <div class="sep"></div>
+    </div>
+    <div class="main3">
+        <h1>Frequently Asked Questions</h1>
+        <ul>
+            <li>What is Netflix?<i class="fa-solid fa-plus"></i></li>
+            <li>How much does Netflix cost?<i class="fa-solid fa-plus"></i></li>
+            <li>Where can i watch?<i class="fa-solid fa-plus"></i></li>
+            <li>How do i cancel?<i class="fa-solid fa-plus"></i></li>
+        </ul>
+    </div>
+    <div class="sep"></div>
+    <div class="main4">
+        <div class="footpanel1">
+            visit again
+        </div>
+        <div class="footpanel2">
+            <div class="helpinfo1">
+                <h3>
+                    get to know us
+                </h3>
+                <a href="#">
+                    blog
+                </a>
+                <a href="#">
+                    About Netflix
+                </a>
+                <a href="#">
+                    Netflix service
+                </a>
+            </div>
+            <div class="helpinfo2">
+                <h3>
+                    make money with us
+                </h3>
+                <a href="#">
+                    sell product on Netflix
+                </a>
+                <a href="#">
+                    sell apps
+                </a>
+                <a href="#">
+                    advertise your product
+                </a>
+                <a href="#">
+                    host an amazon hub
+                </a>
+                <a href="#">
+                    become affilate
+                </a>
+            </div>
+            <div class="helpinfo3">
+                <h3>amazon payment products</h3>
+                <a href="#">
+                    amazon business card
+                </a>
+                <a href="#">
+                    amazon currency converter
+                </a>
+                <a href="#">
+                    reload your balance
+                </a>
+            </div>
+            <div class="helpinfo4">
+                <h3>let us help you</h3>
+                <a href="#">
+                    covid-19 help</a>
+                <a href="#">
+                    your account
+                </a>
+                <a href="#">
+                    your order
+                </a>
+                <a href="#">
+                    help
+                </a>
+            </div>
+        </div>
+        <div class="sep"></div>
+        <div class="footpanel3">
+            <div class="img">
+                <img src="logo.svg" alt="logo">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
